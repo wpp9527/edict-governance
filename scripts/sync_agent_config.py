@@ -32,7 +32,7 @@ OPENCLAW_CFG = OPENCLAW_HOME / 'openclaw.json'
 
 ID_LABEL = {
     'taizi':      {'label': '太子',   'role': '太子',         'duty': '统一入口、接旨立项、意图提炼与最终回奏', 'emoji': '🤴'},
-    'main':       {'label': '主控',   'role': '默认主入口',   'duty': 'OpenClaw 运行时默认入口（治理语义等同太子）', 'emoji': '🧭'},
+    'main':       {'label': '太子',   'role': '默认主入口',   'duty': 'OpenClaw 运行时默认入口（治理语义等同太子）', 'emoji': '🧭'},
     'zhongshu':   {'label': '中书省', 'role': '中书令',       'duty': '方案设计、任务拆解与执行路径规划',      'emoji': '📜'},
     'menxia':     {'label': '门下省', 'role': '侍中',         'duty': '质量闸门、审议把关与退回复审',          'emoji': '🔍'},
     'shangshu':   {'label': '尚书省', 'role': '尚书令',       'duty': '总调度、任务分派、结果回收与汇总',      'emoji': '📮'},

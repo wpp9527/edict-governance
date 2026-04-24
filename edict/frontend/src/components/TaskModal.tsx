@@ -11,15 +11,15 @@ import type {
   PhaseDuration,
 } from '../api';
 
-const AGENT_LABELS: Record<string, string> = { main: '主会话', ...OFFICIAL_ROLE_LABEL_MAP };
+const AGENT_LABELS: Record<string, string> = { main: '太子', ...OFFICIAL_ROLE_LABEL_MAP };
 
 const NEXT_LABELS: Record<string, string> = {
-  Taizi: '中书省起草',
-  Zhongshu: '门下省审议',
-  Menxia: '尚书省派发',
-  Assigned: '开始执行',
-  Doing: '进入审查',
-  Review: '完成',
+  Taizi: '转中书省',
+  Zhongshu: '转门下省',
+  Menxia: '转尚书省',
+  Assigned: '进入执行',
+  Doing: '转尚书省审查',
+  Review: '回奏太子',
 };
 
 function fmtStalled(sec: number): string {

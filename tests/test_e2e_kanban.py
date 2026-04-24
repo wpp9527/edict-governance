@@ -95,7 +95,7 @@ def test_prefix_stripped():
 # ── TEST 7: state 更新 + org 自动联动
 def test_state_update():
     cmd_create('JJC-TEST-E2E-07', '测试状态更新与组织联动功能', 'Zhongshu', '中书省', '中书令')
-    cmd_state('JJC-TEST-E2E-07', 'Menxia', '方案提交门下省审议')
+    cmd_state('JJC-TEST-E2E-07', 'Menxia', '方案提交门下省处理')
     t = _get_task('JJC-TEST-E2E-07')
     assert t is not None
     assert t['state'] == 'Menxia', f"state应为Menxia: {t['state']}"

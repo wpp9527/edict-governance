@@ -478,13 +478,13 @@ def cmd_flow(task_id, from_dept, to_dept, remark):
         # 关键修复：太子→中书省 / 中书→门下 / 门下→尚书 时，同步推进 state
         if from_dept == '太子' and to_dept == '中书省' and t.get('state') == 'Taizi':
             t['state'] = 'Zhongshu'
-            t['now'] = t.get('now') or '已转中书省起草'
+            t['now'] = t.get('now') or '已转中书省处理'
         elif from_dept == '中书省' and to_dept == '门下省' and t.get('state') == 'Zhongshu':
             t['state'] = 'Menxia'
-            t['now'] = t.get('now') or '已转门下省审议'
+            t['now'] = t.get('now') or '已转门下省处理'
         elif from_dept == '门下省' and to_dept == '尚书省' and t.get('state') == 'Menxia':
             t['state'] = 'Assigned'
-            t['now'] = t.get('now') or '已转尚书省派发'
+            t['now'] = t.get('now') or '已转尚书省处理'
         t['updatedAt'] = now_iso()
         return tasks
     atomic_json_update(task_file, modifier, [])

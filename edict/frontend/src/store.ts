@@ -57,7 +57,7 @@ export const DEPT_COLOR: Record<string, string> = {
 };
 
 export const STATE_LABEL: Record<string, string> = {
-  Inbox: '收件', Pending: '待处理', Taizi: '太子分拣', Zhongshu: '中书起草',
+  Inbox: '收件', Pending: '待处理', Taizi: '太子', Zhongshu: '中书起草',
   Menxia: '门下审议', Assigned: '已派发', Doing: '执行中', Review: '待审查',
   Done: '已完成', Blocked: '阻塞', Cancelled: '已取消', Next: '待执行',
 };

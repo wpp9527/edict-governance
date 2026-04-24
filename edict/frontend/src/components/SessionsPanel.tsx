@@ -29,7 +29,7 @@ function humanTitle(t: Task, labelMap: Record<string, string>): string {
   const m = title.match(/^agent:(\w+):(\w+)/);
   if (m) {
     const agLabel = labelMap[m[1]] || m[1];
-    if (m[2] === 'main') return agLabel + ' · 主会话';
+    if (m[2] === 'main') return agLabel + ' · 默认入口';
     if (m[2] === 'subagent') return agLabel + ' · 子任务执行';
     if (m[2] === 'cron') return agLabel + ' · 定时任务';
     return agLabel + ' · ' + m[2];

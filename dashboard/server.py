@@ -4,7 +4,7 @@
 Port: 7891 (可通过 --port 修改)
 
 Endpoints:
-  GET  /                       → dashboard.html
+  GET  /                       → dist/index.html
   GET  /api/live-status        → data/live_status.json
   GET  /api/agent-config       → data/agent_config.json
   POST /api/set-model          → {agentId, model}
@@ -662,8 +662,8 @@ def handle_create_task(title, org='中书省', official='中书令', priority='n
         nums = [int(tid.split('-')[-1]) for tid in today_ids if tid.split('-')[-1].isdigit()]
         seq = max(nums) + 1 if nums else 1
     task_id = f'JJC-{today}-{seq:03d}'
-    # 正确流程起点：皇上 -> 太子分拣
-    # target_dept 记录模板建议的最终执行部门（仅供尚书省派发参考）
+    # 正确流程起点：皇上 -> 太子
+    # target_dept 记录模板建议的最终执行部门（供后续处理链路参考）
     initial_org = '太子'
     new_task = {
         'id': task_id,
@@ -671,7 +671,7 @@ def handle_create_task(title, org='中书省', official='中书令', priority='n
         'official': official,
         'org': initial_org,
         'state': 'Taizi',
-        'now': '等待太子接旨分拣',
+        'now': '等待太子接收处理',
         'eta': '-',
         'block': '无',
         'output': '',
@@ -718,8 +718,8 @@ def handle_review_action(task_id, action, comment=''):
     if action == 'approve':
         if task['state'] == 'Menxia':
             task['state'] = 'Assigned'
-            task['now'] = '门下省准奏，移交尚书省派发'
-            remark = f'✅ 准奏：{comment or "门下省审议通过"}'
+            task['now'] = '门下省准奏，移交尚书省处理'
+            remark = f'✅ 准奏：{comment or "门下省审核通过"}'
             from_dept = '门下省'
             to_dept = '尚书省'
         else:  # Review
@@ -1418,7 +1418,7 @@ def handle_repair_flow_order():
         if task.get('state') == 'Zhongshu' and task.get('org') == '中书省' and len(flow_log) == 1:
             task['state'] = 'Taizi'
             task['org'] = '太子'
-            task['now'] = '等待太子接旨分拣'
+            task['now'] = '等待太子接收处理'
 
         task['updatedAt'] = now_iso()
         fixed += 1
@@ -2065,10 +2065,10 @@ def get_task_activity(task_id):
 
 # 状态推进顺序（手动推进用）
 _STATE_FLOW = {
-    'Pending':  ('Taizi', '皇上', '太子', '待处理旨意转交太子分拣'),
-    'Taizi':    ('Zhongshu', '太子', '中书省', '太子分拣完毕，转中书省起草'),
-    'Zhongshu': ('Menxia', '中书省', '门下省', '中书省方案提交门下省审议'),
-    'Menxia':   ('Assigned', '门下省', '尚书省', '门下省准奏，转尚书省派发'),
+    'Pending':  ('Taizi', '皇上', '太子', '待处理旨意转交太子处理'),
+    'Taizi':    ('Zhongshu', '太子', '中书省', '太子处理完毕，转中书省处理'),
+    'Zhongshu': ('Menxia', '中书省', '门下省', '中书省方案提交门下省处理'),
+    'Menxia':   ('Assigned', '门下省', '尚书省', '门下省准奏，转尚书省处理'),
     'Assigned': ('Doing', '尚书省', '六部', '尚书省开始派发执行'),
     'Next':     ('Doing', '尚书省', '六部', '待执行任务开始执行'),
     'Doing':    ('Review', '六部', '尚书省', '各部完成，进入汇总'),
