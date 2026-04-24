@@ -1,0 +1,70 @@
+[
+  {
+    "id": "long-input-preprocess",
+    "title": "大文件/长文档预处理",
+    "owners": [
+      "taixuesi",
+      "zhongshu"
+    ],
+    "desc": "拆分、去重、提纲化，为规划链减压",
+    "tags": [
+      "资料分析",
+      "预处理"
+    ]
+  },
+  {
+    "id": "risk-supply-chain-audit",
+    "title": "外部脚本/技能供应链审查",
+    "owners": [
+      "jinyiwei",
+      "menxia",
+      "xingbu"
+    ],
+    "desc": "审查插件、脚本、技能与权限边界",
+    "tags": [
+      "工程开发",
+      "审计"
+    ]
+  },
+  {
+    "id": "budget-model-gating",
+    "title": "高成本模型预算评估",
+    "owners": [
+      "duzhisi",
+      "hubu",
+      "zhongshu"
+    ],
+    "desc": "对远程模型、高成本调用进行预算与熔断评估",
+    "tags": [
+      "数据分析",
+      "预算"
+    ]
+  },
+  {
+    "id": "intel-radar",
+    "title": "平台活动/资讯雷达",
+    "owners": [
+      "qingbaoshi",
+      "zaochao"
+    ],
+    "desc": "低成本追踪外部活动、平台变化与高价值线索",
+    "tags": [
+      "日常办公",
+      "情报"
+    ]
+  },
+  {
+    "id": "skill-template-distill",
+    "title": "经验沉淀为技能模板",
+    "owners": [
+      "jinengdaoshi",
+      "gongbu",
+      "shangshu"
+    ],
+    "desc": "把修复经验转成技能、模板、规范",
+    "tags": [
+      "内容创作",
+      "工程开发"
+    ]
+  }
+]
