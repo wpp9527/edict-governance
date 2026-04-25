@@ -1,7 +1,14 @@
 #!/bin/bash
 # 推送天下要闻到 OpenClaw 会话
 
-DATA_DIR="/opt/fnos-media/services/openclaw/home/.openclaw/workspace-main/data"
+# Support environment variable override for data directory
+if [ -n "$EDICT_TASK_DATA_DIR" ]; then
+  DATA_DIR="$EDICT_TASK_DATA_DIR"
+elif [ -n "$OPENCLAW_HOME" ]; then
+  DATA_DIR="$OPENCLAW_HOME/workspace-main/data"
+else
+  DATA_DIR="$HOME/.openclaw/workspace-main/data"
+fi
 BRIEF_FILE="$DATA_DIR/morning_brief.json"
 CONFIG_FILE="$DATA_DIR/morning_brief_config.json"
 

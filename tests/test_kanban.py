@@ -171,10 +171,11 @@ def test_progress_log_capped(tmp_path):
 
 
 def test_flow_finds_task_across_data_dirs(tmp_path, monkeypatch):
-    """cmd_flow should locate a task even when TASKS_FILE points elsewhere."""
+    """cmd_flow should locate a task in workspace-*/data when TASKS_FILE points elsewhere."""
     base_data = tmp_path / 'base' / 'data'
     base_data.mkdir(parents=True)
-    other_data = tmp_path / 'other' / 'data'
+    home = tmp_path / 'home'
+    other_data = home / '.openclaw' / 'workspace-other' / 'data'
     other_data.mkdir(parents=True)
 
     (base_data / 'tasks_source.json').write_text('[]')
@@ -184,6 +185,9 @@ def test_flow_finds_task_across_data_dirs(tmp_path, monkeypatch):
 
     monkeypatch.setattr(kb, '_BASE', tmp_path / 'base', raising=False)
     monkeypatch.setattr(kb, 'TASKS_FILE', base_data / 'tasks_source.json', raising=False)
+    monkeypatch.setattr(kb.pathlib.Path, 'home', staticmethod(lambda: home))
+    monkeypatch.setattr(kb, '_ACTIVE_DATA_DIR', base_data, raising=False)
+    monkeypatch.setattr(kb, '_FALLBACK_DATA_DIR', base_data, raising=False)
 
     kb.cmd_flow('T-X', '太子', '中书省', '跨目录查找任务')
 

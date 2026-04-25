@@ -47,4 +47,6 @@ _*.py
 
 # Generated docs
 *.docx
-*.pdf
+
+# Local sync tool with external dependencies
+scripts/unified_sync_from_api.py
